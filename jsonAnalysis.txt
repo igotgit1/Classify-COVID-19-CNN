@@ -1,0 +1,20 @@
+.json 파일 분석
+
+#이미지 데이터 전처리
+#픽셀 256x256, 채널 수=3
+
+#Deep Learning을 위해 Sequential로 모델 생성.
+#각 Layer add하는 방식으로 구현. 
+model=Squential()
+
+#Convolution Layer생성.
+#32개의 필터개수
+#커널 사이즈 (3,3) 1칸씩 이동.
+#padding 하여 이미지 축소, 활성화 함수는 relu.
+#input_shape 미리 설정하기(256x256x3)
+#################VariaceScaling클래스의 설정이 다름. 
+model.add(Conv2D(32,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', input_shape=input_shape),#VarianceScaling관련 설정추가하기) 
+
+#밤이 너무 깊음.
+
+
