@@ -17,7 +17,6 @@ model=Squential()
 #padding 하여 이미지 축소, 활성화 함수는 relu
 #input_shape 미리 설정하기(256x256x3)
 #kernel_initializer=VarianceScaling. 
-#VarianceScaling의 기본값이라 예상
 model.add(Conv2D(32,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', input_shape=input_shape, kernel_initializer=initializers.VarianceScaling(scale=2.0,mode='fan_in', distribution='truncated_normal',seed=None))) 
 
 #Pooling Layer 생성
