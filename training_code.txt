@@ -59,4 +59,25 @@ model.add(Dense(512, activation='relu', kernel_initializer=initializers.Variance
 #비활성화 뉴런 25%
 model.add(Dropout(0.25))
 
+#Dense Layer_1 생성
+model.add(Dense(256, activation='relu', kernel_initializer=initializers.VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal', seed=None)))
+#비활성화 뉴런_1 40%
+model.add(Dropout(0.4))
+
+#Dense Layer_2 생성
+model.add(Dense(128, activation='relu', kernel_initializer=initializers.VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal', seed=None)))
+#비활성화 뉴런_2 30%
+model.add(Dropout(0.3))
+
+#BatchNormalization Layer 생성
+model.add(BatchNormalization(axis=1))
+
+#Dense Layer_3 생성
+model.add(Dense(64, activation='relu', kernel_initializer=initializers.VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal', seed=None)))
+#비활성화 뉴런_3 50%
+model.add(Dropout(0.5))
+
+#Dense Layer_4 생성
+model.add(Dense(3, activation='softmax', kernel_initializer=initializers.GlorotNormal()))
+
 
