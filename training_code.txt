@@ -1,71 +1,73 @@
 #training command 
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, BatchNormalization, Activation
-from keras.layers.convolutional import Conv2D, MaxPooling2D, GlobalAveragePooling2D
-from keras import initializers
+from keras.layers import Dense, Dropout, BatchNormalization, Activation, Conv2D, MaxPooling2D, GlobalAveragePooling2D
+from keras.initializers  import VarianceScaling, glorot_normal
 
 #이미지 데이터 전처리 해야함
+#코드 추가 예정
+
 #픽셀 256x256, 채널 수=3
+input_shape=(256,256,3)
 
 #Deep Learning을 위해 Sequential로 모델 생성
 #각 Layer add하는 방식으로 구현
-model=Squential()
+model=Sequential()
 
 #Convolution Layer 생성
 #32개의 필터개수
 #커널 사이즈 (3,3) 1칸씩 이동
 #padding 하여 이미지 축소, 활성화 함수는 relu
-#input_shape 미리 설정하기(256x256x3)
+#input_shape=(256x256x3)
 #kernel_initializer=VarianceScaling. 
-model.add(Conv2D(32,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', input_shape=input_shape, kernel_initializer=VarianceScaling(scale=2.0,mode='fan_in', distribution='truncated_normal',seed=None))) 
+model.add(Conv2D(32,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', input_shape=input_shape, kernel_initializer=VarianceScaling(scale=2.0,mode='fan_in', distribution='normal',seed=None))) 
 
 #Pooling Layer 생성
 #비교영역 크기는(2,2)이고 (2,2)만큼 이동하면서 각 항목이 한번씩만 비교되도록 설정
 model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 #Convolution Layer_1 생성
-model.add(Conv2D(64,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal',seed=None))) 
+model.add(Conv2D(64,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal',seed=None))) 
 
 #Pooling Layer_1 생성
 model.add(MaxPooling2D(pool_size=(3,3), strides=(3,3)))
 
 #Convolution Layer_2 생성
-model.add(Conv2D(64,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal',seed=None))) 
+model.add(Conv2D(64,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal',seed=None))) 
 
 #Pooling Layer_2 생성
 model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 #Convolution Layer_3 생성
-model.add(Conv2D(128,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal',seed=None))) 
+model.add(Conv2D(128,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal',seed=None))) 
 
 #Pooling Layer_3 생성
 model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 #Convolution Layer_4 생성
-model.add(Conv2D(256,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0,mode='fan_in', distribution='truncated_normal',seed=None))) 
+model.add(Conv2D(256,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0,mode='fan_in', distribution='normal',seed=None))) 
 
 #Pooling Layer_4 생성
 model.add(MaxPooling2D(pool_size=(2,2), strides=(2,2)))
 
 #Convolution Layer_5 생성
-model.add(Conv2D(512,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal',seed=None)))
+model.add(Conv2D(512,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal',seed=None)))
 
 #GlobalAveragePooling Layer 생성
 model.add(GlobalAveragePooling2D(data_format='channels_last'))
 
 #Dense Layer 생성
 #512가지 출력
-model.add(Dense(512, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal', seed=None)))
+model.add(Dense(512, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal', seed=None)))
 #비활성화 뉴런 25%
 model.add(Dropout(0.25))
 
 #Dense Layer_1 생성
-model.add(Dense(256, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal', seed=None)))
+model.add(Dense(256, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal', seed=None)))
 #비활성화 뉴런_1 40%
 model.add(Dropout(0.4))
 
 #Dense Layer_2 생성
-model.add(Dense(128, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal', seed=None)))
+model.add(Dense(128, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal', seed=None)))
 #비활성화 뉴런_2 30%
 model.add(Dropout(0.3))
 
@@ -73,7 +75,7 @@ model.add(Dropout(0.3))
 model.add(BatchNormalization(axis=1))
 
 #Dense Layer_3 생성
-model.add(Dense(64, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='truncated_normal', seed=None)))
+model.add(Dense(64, activation='relu', kernel_initializer=VarianceScaling(scale=2.0, mode='fan_in', distribution='normal', seed=None)))
 #비활성화 뉴런_3 50%
 model.add(Dropout(0.5))
 
