@@ -3,10 +3,20 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, BatchNormalization, Activation, Conv2D, MaxPooling2D, GlobalAveragePooling2D
 from keras.initializers  import VarianceScaling, glorot_normal
 
-#이미지 데이터 전처리 해야함
-#코드 추가 예정
+#Image preprocessing
+#PIL image loading 
+img = tf.keras.preprocessing.image.load_img(path, target_size=(256, 256))
 
-#픽셀 256x256, 채널 수=3
+#PIL -> nparray(same size, only type change)
+img = np.reshape(img, (256, 256, 3))
+  
+#numpyarray's all element/255
+img = img.astype('float32') / 255
+
+#expand dimension 
+img = np.expand_dims(img, axis=0)
+
+#pixel 256x256, num of channel=3
 input_shape=(256,256,3)
 
 #Deep Learning을 위해 Sequential로 모델 생성
@@ -81,5 +91,3 @@ model.add(Dropout(0.5))
 
 #Dense Layer_4 생성
 model.add(Dense(3, activation='softmax', kernel_initializer=glorot_normal()))
-
-
