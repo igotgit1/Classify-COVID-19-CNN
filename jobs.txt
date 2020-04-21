@@ -7,15 +7,15 @@
 
 #미해결
 
-1.무수히 많은 사진들을 하나의 배열에 몰아넣어야 될 거 같음. 
-그런데 폐렴 환자와 일반인의 x-ray가 폴더 곳곳에 분산되어 있어서 배열에 몰아넣기 위한 코드가 필요함. 또한 배열 속 데이터들 모두 numpy로 변환시켜야함
+1.이미지들을 하나의 배열에 몰아넣어야 될 거 같음. 
+그런데 폐렴 환자와 일반인의 x-ray가 폴더 곳곳에 분산되어 있어서 배열에 몰아넣기 위한 코드가 필요함. 또한 한곳에 몰아넣고나서 numpy 로 변환시켜야함.
 
 2.model.compile의 인자인 optimizer, loss, metrics에 대한 값을 설정해야함.
 metrics=['accuracy']로 확정.
 optimizer, loss 찾아보기.
 
-3.model.fit의 인자인 epoch, batch size를 설정해야함.
-이는 fit 함수의 반환으로 얻어지는 히스토리 개체를 이용하여 loss, accuracy, val_loss, val_accuracy의 그래프 도출하여 적합한 epoch를 설정. 
+3.model.fit의 인자인 epoch, batch size 설정.
+이는 fit 함수의 반환으로 얻어지는 히스토리 개체를 이용하여 loss, accuracy, val_loss, val_accuracy의 그래프로부터 오버피팅 일어나기 전에 조기종료하여  epoch를 설정.
 batch size는 어떻게 정하는게 좋은지 알아봐야함.
 
 
