@@ -18,5 +18,10 @@ optimizer, loss 찾아보기.
 이는 fit 함수의 반환으로 얻어지는 히스토리 개체를 이용하여 loss, accuracy, val_loss, val_accuracy의 그래프로부터 오버피팅 일어나기 전에 조기종료하여  epoch를 설정.
 batch size는 어떻게 정하는게 좋은지 알아봐야함.
 
+#한계점
+colab에서 gpu 환경으로 테스트 하는데 제한사항이 많음..
+이미지 데이터 업로드부터 너무 오래 걸림. 
+1 epoch 학습도 한참 걸리는듯.
+자취방에가서 gpu환경으로 테스트 할 필요성.
 
 
