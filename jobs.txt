@@ -7,7 +7,7 @@
 
 #미해결
 
-1.이미지들을numpy 배열로 변환시키면서 하나의 배열에 몰아넣기.
+1.이미지들을numpy 배열로 변환시키면서 하나의 배열에 몰아넣기.//거의 해결
 
 2.model.compile의 인자인 optimizer, loss, metrics에 대한 값을 설정해야함.
 metrics=['accuracy']로 확정.
@@ -16,9 +16,3 @@ optimizer, loss 찾아보기.
 3.model.fit의 인자인 epoch, batch size 설정.
 이는 fit 함수의 반환으로 얻어지는 히스토리 개체를 이용하여 loss, accuracy, val_loss, val_accuracy의 그래프로부터 오버피팅 일어나기 전에 조기종료하여  epoch를 설정.
 batch size는hyper parameter보다 크게?, 16->32->64->128->256으로 테스트?, 최대한 크게?
-
-#한계점
-colab에서 gpu 환경으로 테스트 하는데 1 epoch 학습도 한참 걸리는듯.
-gpu환경으로 테스트 할 필요성.
-
-
