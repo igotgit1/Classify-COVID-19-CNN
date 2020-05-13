@@ -1,0 +1,10 @@
+all images=[]
+for img_name in os.listdir(normal_dir):
+	img_path=os.path.join(normal_dir,img_name)
+	img=image.load_img(img_path,target_size=(256,256))#image load
+	img=np.reshape(img,(256,256,3))#convert PIL image to numpy.ndarray
+	img=img.astype('float32')/255. #change to 0~1 value
+	all_images.append(img) #add image
+
+#convert list to numpy array 
+x_train=np.array(all_images)
