@@ -4,7 +4,10 @@ for img_name in os.listdir(normal_dir):
 	img=image.load_img(img_path,target_size=(256,256))#image load
 	img=np.reshape(img,(256,256,3))#convert PIL image to numpy.ndarray
 	img=img.astype('float32')/255. #change to 0~1 value
-	all_images.append(img) #add image
+	all_images.append(img) #add image to list
 
 #convert list to numpy array 
 x_train=np.array(all_images)
+
+#one hot encoding to label
+y_train=tensorflow.keras.util.to_categorical(y_train,3)
