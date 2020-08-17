@@ -4,24 +4,6 @@ from keras.layers import Dense, Dropout, BatchNormalization, Activation, Conv2D,
 from keras.initializers  import VarianceScaling, glorot_normal
 import numpy as np
 
-#Image preprocessing
-#PIL image loading 
-img = tf.keras.preprocessing.image.load_img(path, target_size=(256, 256))
-
-#PIL -> nparray(same size, only type change)
-img = np.reshape(img, (256, 256, 3))
-  
-#numpyarray's all element/255
-img = img.astype('float32') / 255
-
-#expand dimension 
-img = np.expand_dims(img, axis=0)
-
-
-
-#pixel 256x256, num of channel=3
-input_shape=(256,256,3)
-
 #Deep Learning을 위해 Sequential로 모델 생성
 #각 Layer add하는 방식으로 구현
 model=Sequential()
@@ -32,7 +14,7 @@ model=Sequential()
 #padding 하여 이미지 축소, 활성화 함수는 relu
 #input_shape=(256x256x3)
 #kernel_initializer=VarianceScaling. 
-model.add(Conv2D(32,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', input_shape=input_shape, kernel_initializer=VarianceScaling(scale=2.0,mode='fan_in', distribution='normal',seed=None))) 
+model.add(Conv2D(32,kernel_size=(3,3), strides=(1,1), padding='valid', activation='relu', input_shape=(256,256,3), kernel_initializer=VarianceScaling(scale=2.0,mode='fan_in', distribution='normal',seed=None))) 
 
 #Pooling Layer 생성
 #비교영역 크기는(2,2)이고 (2,2)만큼 이동하면서 각 항목이 한번씩만 비교되도록 설정
